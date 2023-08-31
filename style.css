@@ -1,0 +1,46 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: black;
+    padding-left: 25px;
+    
+
+}
+h1{
+    color: salmon;
+    text-align: center;
+    font-size: 50px;
+    margin-top: 2%;
+    font-family: 'Fascinate';
+}
+#main_container{
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+}
+#sub-container{
+    display: flex;
+    align-items: center;
+}
+p{
+    background-color: white;
+    height: 25px;
+
+}
+span{
+    color: white;
+    margin-top: -3px;
+    margin-left: 5px;
+
+}
+#color_picker{
+    margin-right :25px;
+
+}
+canvas{
+    background-color: rgb(235, 232, 232);
+    margin-top: 25px;
+}

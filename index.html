@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CANVAS</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://fonts.googleapis.com/css?family=Fascinate' rel='stylesheet'>
+</head>
+<body>
+    <h1>Canvas</h1>
+    <div id="main_container">
+        <div id="sub_container">
+            <input id="color-picker" type="color">
+            <input id="line-width-range" type="range" min="1" max="100" placeholder="2">
+            <span id="line-width-label">2</span>
+        </div>
+        <p>The drawing App</p>
+    </div>
+    <canvas width="1330px" height="400px" id="canvas-board">
+
+    </canvas>
+    <script>
+        let canvas=document.querySelector("#canvas-board");
+        let colorPicker=document.querySelector("#color-picker");
+        let lineWidthRange=document.querySelector("#line-width-range");
+        let lineWidthLabel=document.querySelector("#line-width-label");
+        let x=0; y=0;
+        let isMouseDown = false;
+
+        
+        let context=canvas.getContext("2d");
+        // context.lineCap="round";
+        colorPicker.addEventListener("change",changeColor);
+
+        function changeColor(event){
+            let color=event.target.value;
+            context.strokeStyle=color
+        }
+        lineWidthRange.addEventListener("input",changeWidth);
+
+        function changeWidth(event){
+            let range=event.target.value;
+            lineWidthLabel.innerText=range;
+            context.lineWidth=range;
+        }        
+    
+
+        canvas.addEventListener("mousedown",startDrawing);
+        canvas.addEventListener("mousemove",drawLine);
+        canvas.addEventListener("mouseup",stopDrawing);
+        canvas.addEventListener("mouseout",stopDrawing)
+        
+        function startDrawing(event){
+            x=event.offsetX;
+            y=event.offsetY;
+            isMouseDown=true;
+            console.log("start")
+        }
+        function stopDrawing(){
+            console.log("stop")
+            isMouseDown=false;
+        }
+        function drawLine(event){
+            if(isMouseDown){
+                let newX=event.offsetX;
+                let newY=event.offsetY;
+                context.beginPath();
+                context.moveTo(x,y);
+                context.lineTo(newX,newY);
+                context.stroke();
+                x=newX;
+                y=newY;
+            }
+        }
+        
+        </script>
+
+
+    
+</body>
+</html>
